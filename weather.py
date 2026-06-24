@@ -1,5 +1,7 @@
 from typing import Any 
 import os  # Python内置操作系统文件/路径工具库
+from dotenv import load_dotenv
+load_dotenv()  # ← 这一行会去读取 .env 文件，把内容注入到环境变量中
 
 import httpx
 from mcp.server.fastmcp import FastMCP
