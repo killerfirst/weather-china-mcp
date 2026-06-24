@@ -19,8 +19,15 @@ if not WEATHER_API_KEY:
         "请在项目根目录创建 .env文件,并添加:\n"
         "QWEATHER_API_KEY=你的和风天气API_KEY"
     )
-WEATHER_API_BASE="https://devapi.qweather.com/v7"
-GEO_API_BASE="https://geoapi.qweather.com/v2"
+QWEATHER_API_HOST = os.getenv("QWEATHER_API_HOST")
+if not QWEATHER_API_HOST:
+    raise RuntimeError(
+        "缺少QWEATHER_API_HOST 环境变量 \n"
+        "请在项目根目录创建 .env文件,并添加:\n"
+        "QWEATHER_API_HOST=你的和风天气API域名"
+    )
+WEATHER_API_BASE = f"https://{QWEATHER_API_HOST}/v7"
+GEO_API_BASE = f"https://{QWEATHER_API_HOST}/geo/v2"
 USER_AGENT="weather-china-app/1.0"
 
 async def make_request(url:str)->dict[str,Any]|None:
